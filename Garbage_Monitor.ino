@@ -16,10 +16,7 @@ const int echo = 5;     // Nodemcu D1
 int trigPin = 14;      // Nodemcu D5
   int echoPin = 12;   // Nodemcu D6 
   int servoPin = 2;  // Nodemcu D4
-  int blue = 15;    // nodemcu D7
   int buz = 13;    // nodemcu D8
-int red = 4;      // Nodemcu D2
-int green = 0;   // Nodemcu D3
 long T;
 float distance;
 
@@ -137,26 +134,6 @@ T = pulseIn(echo, HIGH);
   Serial.print("Distance in cm: ");
   Serial.println(distance);
 
-if (distance >= 5 && distance <=8 )
-{ 
-  digitalWrite(green,LOW);  
-  digitalWrite(red,HIGH);
-  tone(buz,2000,500);
-}
-
-else if (distance < 5)
-{ 
-  digitalWrite(red,HIGH);
-  tone(buz,2000,500);
-  digitalWrite(green,LOW);
-}
-
-else if(distance>8){
-digitalWrite(buz,LOW);
-digitalWrite(red,LOW);
-digitalWrite(green,HIGH);
-
-}
 ThingSpeak.writeField(myChannelField, ChannelField, distance, myWriteAPIKey);
   delay(1000);
 }
